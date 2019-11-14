@@ -34,9 +34,7 @@ export default {
         .then(data => {
           if (data.body.status == 0) {
             this.comments = this.comments.concat(data.body.message);
-            console.log(this.comments);
           } else {
-            console.log(data);
             Toast("获取评论失败!");
           }
         });
@@ -45,7 +43,6 @@ export default {
     getMore() {
       this.pageindex ++ 
       this.getComments();
-      console.log("11111");
     },
     // 发表评论
     addComment(){
