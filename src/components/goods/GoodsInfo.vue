@@ -5,7 +5,7 @@
     @enter='enter'
     @after-enter='afterEnter'
     >
-      <div class="ball" v-show="ballFlag" ref="ball"></div>
+      <div class="ball" v-show="ballFlag" ref="ball">{{selectCount}}</div>
     </transition>
 
     <!-- 图片区域 -->
@@ -28,7 +28,7 @@
           </p>
           <p>
             购买数量:
-            <numbox></numbox>
+            <numbox @getcount="getSelect"  :max="goodsinfo.stock_quantity"></numbox>
           </p>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
@@ -62,7 +62,8 @@ export default {
       id: this.$route.params.id,
       lunbotuList: [],
       goodsinfo: {},
-      ballFlag: false 
+      ballFlag: false ,
+      selectCount: 1  // 默认选中一个
     };
   },
   created() {
@@ -97,6 +98,10 @@ export default {
     addToShopCar(){
       this.ballFlag = !this.ballFlag ;
     },
+    getSelect(count){
+      this.selectCount = count ;
+      // console.log(count)
+    },
     beforeEnter(el){
       el.style.transform = 'translate(0,0)'
     },
@@ -113,7 +118,7 @@ export default {
       const yDist = badgePostion.top - ballPostion.top ;
 
       el.style.transform= `translate(${xDist}px, ${yDist}px)`;
-      el.style.transition = 'all 1.5s cubic-bezier(.2,-0.4,.72,.19)'
+      el.style.transition = 'all .8s cubic-bezier(.4,-0.3,1,.58)'
       done() ;
     },
     afterEnter(el){
@@ -153,6 +158,11 @@ export default {
     background-color: #f40 ;
     top: 410px;
     left: 140px;
+
+    color: white ;
+    text-align: center ;
+    line-height: 15px;
+    font-size: 14px;
   }
 }
 </style>
