@@ -63,7 +63,6 @@ export default {
         .then(result => {
           if (result.body.status == 0) {
             this.lunbotuList = result.body.message;
-            console.log(this.lunbotuList);
           } else {
             Toast("轮播图加载失败");
           }

@@ -97,6 +97,14 @@ export default {
     },
     addToShopCar(){
       this.ballFlag = !this.ballFlag ;
+
+      var goodsinfo = {
+        id:this.id,
+        count: this.selectCount ,
+        price: this.goodsinfo.sell_price,
+        selected:true
+      }
+      this.$store.commit("addToCar",goodsinfo) 
     },
     getSelect(count){
       this.selectCount = count ;
